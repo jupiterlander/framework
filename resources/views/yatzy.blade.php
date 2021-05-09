@@ -1,24 +1,5 @@
 <?php
-
 declare(strict_types=1);
-// Variables from controller
-$header = $header ?? null;
-$message = $message ?? null;
-
-$scoreboard = $scoreboard ?? null;
-$diceValues = $diceValues ?? null;
-$rolls = $rolls ?? null;
-$maxRolls = $maxRolls ?? null;
-
-// Helper-variables for shorter syntax
-$rollsLeft = $maxRolls - $rolls;
-$firstRoll = ($rolls == 0);
-$scoreboardFirstBlock = $scoreboard["firstBlock"];
-$sum = $scoreboard["firstTotal"]["score"];
-$total = $scoreboard["Total"]["score"];
-$gameover = !is_null($total);
-//var_dump(session()->all() ?? 'no session');
-//var_dump(session('yatzy') ?? 'no session');
 ?>
 @extends('layout')
 
@@ -27,28 +8,32 @@ $gameover = !is_null($total);
 @section('content')
 
 
-<h1><?= $header ?></h1>
+<h1>{{ $header }}</h1>
 <div>
     <h2>A simple Yatzy game.</h2>
     <p>Click on die to hold and click on Ones..Sixes to select score. Bonus for sum > 44.</p>
 
 </div>
 
+
+<div>
 <div style="display: inline-block">
 <form method="POST">
 <fieldset class="large">
     @csrf
-    <?php foreach (array_keys($diceValues) as $index) {
-        $name = "hold" . "[" . $index . "]";
-        ?>
+    @foreach (array_keys($diceValues) as $index)
+        @php
+            $name = "hold" . "[" . $index . "]";
+        @endphp
         <div style="height: 3rem">
-        <input type="checkbox" id="die-<?= $name ?>" name="<?= $name ?>" value="roll" style="visibility:<?= $firstRoll ? 'hidden' : 'visible' ?>">
-        <label for="die-<?= $name ?>">&#<?= $firstRoll ? 9633 : 9855 + $diceValues[$index] ?>;</label>
-    </div>
-    <?php } ?>
+            <input type="checkbox" id="die-{{ $name }}" name="{{ $name }}" value="roll" style="visibility:{{ $firstRoll ? 'hidden' : 'visible' }}">
+            <label for="die-{{ $name }}">&#{{ $firstRoll ? 9633 : 9855 + $diceValues[$index] }}</label>
+        </div>
+    @endforeach
+ 
 
-    <p>Rolls left: <?= $rollsLeft ?></p>
-    <input style="width: 10rem; padding: 0.5rem" type="submit" name="action" value="<?= $gameover ? 'New game' : 'Roll' ?>" <?= $rollsLeft ? '' : 'disabled' ?>>
+    <p>Rolls left: {{ $rollsLeft }}</p>
+    <input style="width: 10rem; padding: 0.5rem" type="submit" name="action" value="{{ $gameover ? 'New game' : 'Roll' }}" {{ $rollsLeft ? '' : 'disabled' }}>
 </fieldset>
 </form>
 </div>
@@ -57,7 +42,7 @@ $gameover = !is_null($total);
 <div style="display: inline-block">
 <form method="POST">
 @csrf
-<fieldset  <?= $rollsLeft > 2 ? "disabled" : null ?>>
+<fieldset  {{ $rollsLeft > 2 ? "disabled" : null }}>
 <table>
     <tr>
         <th colspan=3 style="background: lightgray;">Scoreboard</th>
@@ -88,6 +73,7 @@ $gameover = !is_null($total);
     <input style="width: 10rem; padding: 0.5rem" type="submit" name="action" value="setscore" <?= false ? 'disabled' : '' ?>>
 </fieldset>
 </form>
+</div>
 </div>
 <hr>
 

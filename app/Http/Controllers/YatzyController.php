@@ -15,13 +15,31 @@ class YatzyController extends Controller
 
         $yatzyGame = session('yatzy', null) ? unserialize(session('yatzy')) : new YatzyGame();
 
+        $scoreboard = $yatzyGame->getScoreboard();
+        $diceValues = $yatzyGame->getPlayerHand();
+        $rolls =  $yatzyGame->getRolls();
+
+        // Helper-variables for shorter syntax
+        $rollsLeft = $yatzyGame::MAXROLLS - $rolls;
+        $firstRoll = ($rolls == 0);
+        $scoreboardFirstBlock = $scoreboard["firstBlock"];
+        $sum = $scoreboard["firstTotal"]["score"];
+        $total = $scoreboard["Total"]["score"];
+        $gameover = !is_null($total);
+
    
         $data = [
             "header" => "Yatzy",
-            "scoreboard" => $yatzyGame->getScoreboard(),
-            "diceValues" => $yatzyGame->getPlayerHand(),
-            "rolls" => $yatzyGame->getRolls(),
+            "scoreboard" => $scoreboard,
+            "diceValues" => $diceValues,
+            "rolls" => $rolls,
             "maxRolls" =>  $yatzyGame::MAXROLLS,
+            "rollsLeft" => $rollsLeft,
+            "firstRoll" => $firstRoll,
+            "scoreboardFirstBlock" => $scoreboardFirstBlock,
+            "sum" => $sum,
+            "total" => $total,
+            "gameover" => $gameover,
         ];
 
         return view('yatzy', $data);
