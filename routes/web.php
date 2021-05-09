@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\YatzyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +17,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+Route::get('/yatzy', [YatzyController::class, 'play']);
+Route::post('/yatzy', [YatzyController::class, 'process']);
+Route::get('/kill', [YatzyController::class, 'kill']);
