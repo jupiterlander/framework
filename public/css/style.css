@@ -1,0 +1,61 @@
+body {
+    overflow-y: scroll;
+    width: 800px;
+    margin: 8px auto;
+    padding-left: 1em;
+}
+
+main {
+    min-height: 20em;
+}
+
+footer {
+    border-top: 1px solid #ccc;
+    min-height: 4em;
+    text-align: center;
+}
+
+
+p { 
+    line-height: 1.5;
+}
+
+.large {
+    font-size: xx-large;
+}
+
+input[type="submit"] {
+    width: 10rem;
+    padding: 0.5rem;
+    background-color: lightgreen;
+    margin: 1rem;
+}
+
+table {
+    margin: auto;
+}
+
+table, tr, th, td {
+    border-style: solid;
+    border-width: thin;
+    border-collapse: collapse;
+}
+
+td:last-child {
+    width: 2rem;
+    text-align: center;
+}
+td {
+    padding: 0.5rem;
+    height: 1.2rem;
+}
+
+fieldset {
+    padding: 1rem;
+}
+
+fieldset > div {
+    height: 3rem;
+    margin: auto;
+    width: 5rem;
+}
