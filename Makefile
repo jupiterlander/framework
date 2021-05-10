@@ -5,8 +5,10 @@ PHPCS      := $(BIN)/phpcs
 PHPCBF     := $(BIN)/phpcbf
 PHPCPD     := $(BIN)/phpcpd
 PHPMD      := $(BIN)/phpmd
-PHPSTAN    := $(VENDORBIN)/phpstan
-PHPUNIT    := $(VENDORBIN)/phpunit
+# PHPSTAN    := $(VENDORBIN)/phpstan
+# PHPUNIT    := $(VENDORBIN)/phpunit
+PHPSTAN    := vendor/phpstan/phpstan/phpstan
+PHPUNIT    := vendor/phpunit/phpunit/phpunit
 
 all:
 	@echo "Review the file 'Makefile' to see what targets are supported."
