@@ -8,9 +8,14 @@
   <coverage processUncoveredFiles="true">
     <include>
       <directory suffix=".php">Jupiterlander/</directory>
+      <directory suffix=".php">app/Http/Controllers</directory>
     </include>
     <report>
-       <html outputDirectory="./build/coverage" lowUpperBound="35" highLowerBound="70"/>
+      <clover outputFile="build/coverage.clover"/>
+      <html outputDirectory="./build/coverage" lowUpperBound="35" highLowerBound="70"/>
     </report>
   </coverage>
+  <php>
+    <server name="APP_ENV" value="testing"/>
+    </php>
 </phpunit>
