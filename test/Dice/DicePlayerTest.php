@@ -7,6 +7,9 @@ namespace Jupiterlander;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ResponseInterface;
 
+use Jupiterlander\dice\DicePlayer;
+use Jupiterlander\dice\Status;
+
 /**
  * Test cases for the controller Sample.
  */
@@ -18,7 +21,7 @@ class DicePlayerTest extends TestCase
     public function testCreateTheDicePlayerClass()
     {
         $dicePlayer = new DicePlayer();
-        $this->assertInstanceOf("\Jupiterlander\DicePlayer", $dicePlayer);
+        $this->assertInstanceOf("\Jupiterlander\dice\DicePlayer", $dicePlayer);
     }
 
     /**

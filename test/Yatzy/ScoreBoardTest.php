@@ -2,10 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Jupiterlander\Yatzy;
+namespace test\Jupiterlander\Yatzy;
 
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ResponseInterface;
+
+use Jupiterlander\yatzy\ScoreBoard;
 
 /**
  * Test cases for the controller Sample.
@@ -18,7 +20,7 @@ class ScoreBoardTest extends TestCase
     public function testCreateTheScoreBoardClass()
     {
         $scoreboard = new ScoreBoard();
-        $this->assertInstanceOf("\Jupiterlander\Yatzy\ScoreBoard", $scoreboard);
+        $this->assertInstanceOf("\Jupiterlander\yatzy\ScoreBoard", $scoreboard);
     }
 
 

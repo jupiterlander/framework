@@ -7,6 +7,8 @@ namespace Jupiterlander;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ResponseInterface;
 
+use Jupiterlander\dice\GraphicalDice;
+
 /**
  * Test cases for the controller Sample.
  */
@@ -18,7 +20,7 @@ class GraphicalDiceTest extends TestCase
     public function testCreateTheGraphicalDiceClass()
     {
         $die = new GraphicalDice();
-        $this->assertInstanceOf("\Jupiterlander\GraphicalDice", $die);
+        $this->assertInstanceOf("\Jupiterlander\dice\GraphicalDice", $die);
     }
 
     /**

@@ -7,6 +7,8 @@ namespace Jupiterlander;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ResponseInterface;
 
+use Jupiterlander\dice\DiceHand;
+
 /**
  * Test cases for the controller Sample.
  */
@@ -18,7 +20,7 @@ class DiceHandTest extends TestCase
     public function testCreateDiceHandClass()
     {
         $diceHand = new DiceHand();
-        $this->assertInstanceOf("\Jupiterlander\DiceHand", $diceHand);
+        $this->assertInstanceOf("\Jupiterlander\dice\DiceHand", $diceHand);
     }
 
     /**

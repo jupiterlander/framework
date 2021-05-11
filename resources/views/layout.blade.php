@@ -11,14 +11,12 @@
 
 <header>
     <nav>
-        <a href="<?= url("/") ?>">Home</a> |
+        <a href="<?= url("/yatzy") ?>">Yatzy</a> |
         <a href="<?= url("/session") ?>">Session</a> |
-        <a href="<?= url("/debug") ?>">Debug</a> |
-        <a href="<?= url("/twig") ?>">Twig view</a> |
-        <a href="<?= url("/some/where") ?>">some/where</a> |
+        <a href="<?= url("/php") ?>">php</a> |
+        <a href="<?= url("/laravel") ?>">Laravel</a> |
         <a href="<?= url("/no/such/path") ?>">Show 404 example</a> |
-        <a href="<?= url("/game21") ?>">Game 21</a> |
-        <a href="<?= url("/yatzy") ?>">Yatzy</a>
+         <a href="<?= url("/kill") ?>">Kill session</a>
     </nav>
 </header>
 <main>

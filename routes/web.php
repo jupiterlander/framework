@@ -14,11 +14,21 @@ use App\Http\Controllers\YatzyController;
 |
 */
 
-Route::get('/', function () {
+Route::get('/laravel', function () {
     return view('welcome');
 });
 
-
+Route::get('/', [YatzyController::class, 'play']);
 Route::get('/yatzy', [YatzyController::class, 'play']);
 Route::post('/yatzy', [YatzyController::class, 'process']);
 Route::get('/kill', [YatzyController::class, 'kill']);
+
+Route::get('/session', function (Request $req) {
+    $tmp = session()->all();
+    $tmp['_token'] = 'hidden....';
+    return $tmp;
+});
+
+Route::get('/php', function (Request $req) {
+    return phpinfo();
+});

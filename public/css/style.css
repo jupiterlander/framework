@@ -7,6 +7,11 @@ body {
 
 main {
     min-height: 20em;
+    text-align: center;
+}
+
+nav {
+    text-align: center;
 }
 
 footer {
@@ -16,7 +21,7 @@ footer {
 }
 
 
-p { 
+p {
     line-height: 1.5;
 }
 

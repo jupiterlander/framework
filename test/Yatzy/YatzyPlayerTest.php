@@ -2,10 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Jupiterlander\Yatzy;
+namespace test\Jupiterlander\Yatzy;
 
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ResponseInterface;
+
+use Jupiterlander\yatzy\YatzyPlayer;
 
 /**
  * Test cases for the controller Sample.

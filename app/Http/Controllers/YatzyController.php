@@ -4,8 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Session;
-
-use Jupiterlander\yatzy\YatzyGame as YatzyGame;
+use Jupiterlander\yatzy\YatzyGame;
 
 class YatzyController extends Controller
 {
@@ -27,7 +26,6 @@ class YatzyController extends Controller
         $total = $scoreboard["Total"]["score"];
         $gameover = !is_null($total);
 
-   
         $data = [
             "header" => "Yatzy",
             "scoreboard" => $scoreboard,
@@ -45,13 +43,16 @@ class YatzyController extends Controller
         return view('yatzy', $data);
     }
 
-    
+
     public function process(Request $request)
     {
-        $yatzyGame = $request->session()->exists('yatzy') ? unserialize($request->session()->get('yatzy')) : new YatzyGame();
-        $yatzyGame->play($_POST['action'] ?? null, $_POST);
+        if ($request->getSession()) {
+            $yatzyGame = $request->session()->exists('yatzy') ? unserialize($request->session()->get('yatzy')) : new YatzyGame();
+            $yatzyGame->play($_POST['action'] ?? null, $_POST);
 
-        $request->session()->put('yatzy', serialize($yatzyGame));
+            $request->session()->put('yatzy', serialize($yatzyGame));
+        }
+
         return redirect('/yatzy');
     }
 
@@ -60,5 +61,4 @@ class YatzyController extends Controller
         Session::flush();
         return redirect('/yatzy');
     }
-   
 }
