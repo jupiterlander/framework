@@ -11,6 +11,7 @@
 
 <header>
     <nav>
+        <a href="<?= url("/") ?>">Home</a> |
         <a href="<?= url("/yatzy") ?>">Yatzy</a> |
         <a href="<?= url("/session") ?>">Session</a> |
         <a href="<?= url("/php") ?>">php</a> |

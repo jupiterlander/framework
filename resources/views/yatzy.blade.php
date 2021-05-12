@@ -42,7 +42,7 @@ declare(strict_types=1);
 
 
 <div style="display: inline-block">
-<form method="POST">
+<form action="/yatzy" method="POST">
 @csrf
 <fieldset  {{ $rollsLeft > 2 ? "disabled" : null }}>
 <table>

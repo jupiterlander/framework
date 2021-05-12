@@ -18,7 +18,9 @@ Route::get('/laravel', function () {
     return view('welcome');
 });
 
-Route::get('/', [YatzyController::class, 'play']);
+Route::get('/', function () {
+    return view('home');
+});
 Route::get('/yatzy', [YatzyController::class, 'play']);
 Route::post('/yatzy', [YatzyController::class, 'process']);
 Route::get('/kill', [YatzyController::class, 'kill']);
