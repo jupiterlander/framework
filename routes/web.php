@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\YatzyController;
+use App\Http\Controllers\HighScoreController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,6 +24,13 @@ Route::get('/', function () {
 });
 Route::get('/yatzy', [YatzyController::class, 'play']);
 Route::post('/yatzy', [YatzyController::class, 'process']);
+// Route::get('yatzy/highscore', function () {
+//     //dd(HighScore::all());
+//     return view('highscore', [ 'highscores' => HighScore::all()]);
+// });
+Route::get('yatzy/highscore', [HighScoreController::class, 'show']);
+Route::post('yatzy/highscore', [HighScoreController::class, 'store']);
+
 Route::get('/kill', [YatzyController::class, 'kill']);
 
 Route::get('/session', function (Request $req) {
