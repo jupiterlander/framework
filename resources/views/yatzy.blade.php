@@ -5,20 +5,24 @@ declare(strict_types=1);
 ?>
 @extends('layout')
 
-@section('title', 'Yatzy')
-
 @section('content')
 
 
-<h1>{{ $header }}</h1>
-<div>
-    <h2>A simple Yatzy game.</h2>
-    <p>Click on die to hold and click on Ones..Sixes to select score. Bonus for sum > 44.</p>
+<nav>
+    <ul class="breadcrumb">
+                    <li>
+                        <a href="{{ url('/') }}">Home</a>
+                    </li>
+                    <li>
+                        Yatzy
+                    </li>
+    </ul>
+</nav>
 
-</div>
 
+<h1>Yatzy - A simple Yatzy game. </h1>
 
-<div>
+<div class="flex-even-center center-800">
 <div style="display: inline-block">
 <form method="POST">
 <fieldset class="large">
@@ -32,7 +36,7 @@ declare(strict_types=1);
             <label for="die-{{ $name }}">&#{{ $firstRoll ? 9633 : 9855 + $diceValues[$index] }}</label>
         </div>
     @endforeach
- 
+
 
     <p>Rolls left: {{ $rollsLeft }}</p>
     <input style="width: 10rem; padding: 0.5rem" type="submit" name="action" value="{{ $gameover ? 'New game' : 'Roll' }}" {{ $rollsLeft ? '' : 'disabled' }}>
@@ -57,7 +61,7 @@ declare(strict_types=1);
             <td><input type="radio" id ="score-<?= $key ?>" name="scoreboard" value="<?= $key ?>" <?= $value ? "disabled" : null  ?>></th>
             <td  <?= $value ? 'style="text-decoration: line-through"' : null  ?>><label for="score-<?= $key ?>"><?= $key ?></label></td>
             <td><?= $value ?></td>
-        </tr> 
+        </tr>
     <?php } ?>
         <tr>
             <th colspan=2>Sum: </th>
@@ -76,7 +80,29 @@ declare(strict_types=1);
 </fieldset>
 </form>
 </div>
+
+<div class="flex-col-justified-20r">
+    <div>
+        <p>Click on die to hold and click on Ones..Sixes to select score. Bonus for sum > {{ $bonusLimit }}.</p>
+    </div>
+
+    @if($gameover && !$highscore)
+    <form action="/yatzy/highscore" method="POST">
+        @csrf
+        <label for="acronym">Choose a acronym with 0-3 letters for the highscore table: </label>
+        <input type="text" name="acronym" size="3" maxlength="3" placeholder="ABC" pattern="[a-z]{0,3}" style="text-transform:uppercase; text-align:center">
+        <input hidden name="score" value="{{ $total ?? "21" }}">
+        <input type="submit">
+    </form>
+
+    @else
+        <div>
+            <a href="/yatzy/highscore" class="link">Highscores</a>
+        </div>
+    @endif
+
 </div>
-<hr>
+
+</div>
 
 @endsection
