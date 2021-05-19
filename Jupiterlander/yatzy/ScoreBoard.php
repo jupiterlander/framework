@@ -68,7 +68,7 @@ class ScoreBoard
         $firstTotal = $this->scores["firstTotal"]["score"];
 
         if ($this->firstBlockFull()) {
-            $this->scores["firstBonus"]["score"] = ($firstTotal >= self::BONUSLIMIT) ? self::BONUS : 0;
+            $this->scores["firstBonus"]["score"] = ($firstTotal > self::BONUSLIMIT) ? self::BONUS : 0;
             $this->scores["Total"]["score"] = $firstTotal + $this->scores["firstBonus"]["score"];
         }
     }
