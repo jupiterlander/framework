@@ -14,8 +14,12 @@ header {
 main {
     width: 80%;
     min-width: 800px;
-    min-height: 20em;
+    min-height: 80vh;
     text-align: center;
+}
+
+main h1.home {
+    margin-top: 40vh;
 }
 
 nav {
@@ -141,5 +145,38 @@ ul.breadcrumb li {
 
   table.highscore th {
     background-color: darkorange !important;
+  }
+
+  .book-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .card {
+    width: 500px;
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    margin: 1rem;
+    box-shadow: aliceblue;
+    box-sizing: border-box;
+    box-shadow: 10px 5px 5px whitesmoke;
+  }
+
+  .card .inner {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    align-self: flex-start;
+    width: 100%;
+  }
+
+  .card img {
+    width: 100px;
+    height: 150px;
+  }
+
+  .card p {
+      text-align: left;
   }
 
