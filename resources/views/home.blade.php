@@ -10,7 +10,7 @@ declare(strict_types=1);
 @section('content')
 
 
-<h1>Kmom04 - Framework</h1>
+<h1 class="home">Kmom04 - Framework</h1>
 
 
 @endsection
