@@ -15,6 +15,7 @@ class YatzyPlayer
     private $diceHand = null;
     private $rolls = null;
     private $scoreboard = null;
+    private $name = null;
 
 
 
@@ -97,6 +98,26 @@ class YatzyPlayer
     public function setRolls($rolls)
     {
         $this->rolls = $rolls;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of name
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set the value of name
+     *
+     * @return  self
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
 
         return $this;
     }
