@@ -4,20 +4,22 @@
     <title><?= $title ?? "No title" ?></title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" href="<?= url("/favicon.ico") ?>">
-    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href={{ url("/css/style.css") }}>
 </head>
 
 <body>
 
 <header>
-    <nav>
+    <nav class="top">
         <a href="<?= url("/") ?>">Home</a> |
         <a href="<?= url("/yatzy") ?>">Yatzy</a> |
+        <a href="<?= url("/yatzy/highscore") ?>">Yatzy-highscore</a> |
+        <a href="<?= url("/book") ?>">Book</a> |
         <a href="<?= url("/session") ?>">Session</a> |
         <a href="<?= url("/php") ?>">php</a> |
         <a href="<?= url("/laravel") ?>">Laravel</a> |
         <a href="<?= url("/no/such/path") ?>">Show 404 example</a> |
-         <a href="<?= url("/kill") ?>">Kill session</a>
+        <a href="<?= url("/kill") ?>">Kill session</a>
     </nav>
 </header>
 <main>
