@@ -3,12 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Session;
+
 use Jupiterlander\yatzy\YatzyGame;
 
 class YatzyController extends Controller
 {
-    public function play()
+    public function play(Request $request)
     {
         //$yatzyGame = isset($_SESSION['yatzy']) ? unserialize($_SESSION['yatzy']) : new YatzyGame();
 
@@ -17,6 +17,8 @@ class YatzyController extends Controller
         $scoreboard = $yatzyGame->getScoreboard();
         $diceValues = $yatzyGame->getPlayerHand();
         $rolls =  $yatzyGame->getRolls();
+
+        $highscoreSet = $request->session()->get('yatzy-highscore-set', false);
 
         // Helper-variables for shorter syntax
         $rollsLeft = $yatzyGame::MAXROLLS - $rolls;
@@ -38,6 +40,8 @@ class YatzyController extends Controller
             "sum" => $sum,
             "total" => $total,
             "gameover" => $gameover,
+            "highscoreSet" => $highscoreSet,
+            "bonusLimit" => $scoreboard['firstBonus']['limit'],
         ];
 
         return view('yatzy', $data);
@@ -50,15 +54,19 @@ class YatzyController extends Controller
             $yatzyGame = $request->session()->exists('yatzy') ? unserialize($request->session()->get('yatzy')) : new YatzyGame();
             $yatzyGame->play($_POST['action'] ?? null, $_POST);
 
+            if($_POST['action'] == 'new') {
+                $request->session()->put('yatzy-highscore-set', false);
+            }
+
             $request->session()->put('yatzy', serialize($yatzyGame));
         }
 
         return redirect('/yatzy');
     }
 
-    public function kill()
+    public function kill(Request $request)
     {
-        Session::flush();
+        $request->session()->flush();
         return redirect('/yatzy');
     }
 }
