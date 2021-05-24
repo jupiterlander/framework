@@ -33,7 +33,7 @@ declare(strict_types=1);
             ;
         @endphp
         <tr>
-            <td style="width: 5rem;">{{ $score->akronym }}</td>
+            <td style="width: 5rem;">{{ $score->acronym }}</td>
             <td style="width: 5rem;">{{ $score->score }}</td>
             <td>{{ $score->updated_at }}</td>
         </tr>

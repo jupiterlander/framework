@@ -15,7 +15,7 @@ class CreateHighScoresTable extends Migration
     {
         Schema::create('high_scores', function (Blueprint $table) {
             $table->id();
-            $table->string('akronym', 3)->nullable($value = true);
+            $table->string('acronym', 3)->nullable($value = true);
             $table->smallInteger('score');
 
             $table->timestamps();

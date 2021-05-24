@@ -14,32 +14,20 @@ class HighScoreController extends Controller
      * @param  \Illuminate\Http\Request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(Request $req) {
+    public function store(Request $req)
+    {
+        $validated = $req->validate([
+            'score' => 'required|digits_between:1,3',
+            'acronym' => 'required|alpha:size:3']);
+
         $yatzyGame = session('yatzy', null) ? unserialize(session('yatzy')) : null;
-        $total = $yatzyGame->getScoreboard()["Total"]["score"];
 
-        $highscore = new HighScore();
-        $highscore->akronym = strtoupper($req->input('acronym', ''));
-        $highscore->score = $req->input('score');
+        HighScore::create([
+            'acronym' =>  strtoupper($validated['acronym']),
+            'score' => $validated['score']]);
 
-        $highscore->save();
-
-        $yatzyGame->setHighscore(true);
+        $req->session()->put('yatzy-highscore-set', true);
         $req->session()->put('yatzy', serialize($yatzyGame));
-
-        return redirect('yatzy/highscore');
-    }
-
-     /**
-     * Store a name for highscore in the database.
-     *
-     * @param  \Illuminate\Http\Request
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function storeName($id, $name) {
-
-        $highscore = HighScore::find($id);
-        $highscore->name = $name;
 
         return redirect('yatzy/highscore');
     }
@@ -51,7 +39,8 @@ class HighScoreController extends Controller
      * @param  \Illuminate\Http\Request
      * @return \Illuminate\View\View
      */
-    public function show(Request $request) {
+    public function show(Request $request)
+    {
         $highscores =  HighScore::orderBy('score', 'desc')->get();
 
         return view('highscore', [ 'highscores' => $highscores ]);

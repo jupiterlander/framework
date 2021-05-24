@@ -12,7 +12,7 @@
 
     # Rewrite 1 - For request via www.student.bth.se
     RewriteCond %{HTTP_HOST} ^www\.student\.bth\.se$ [NC]
-    RewriteRule (.*) /~adpr12/dbwebb-kurser/mvc/me/framework/public/index.php/$1 [NC,L]
+    RewriteRule (.*) /~adpr12/dbwebb-kurser/mvc/me/orm/public/index.php/$1 [NC,L]
 
     # Rewrite 2 - For other requests
     RewriteCond %{HTTP_HOST} !^www\.student\.bth\.se$ [NC]

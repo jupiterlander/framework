@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\YatzyController;
+use App\Http\Controllers\BookController;
 use App\Http\Controllers\HighScoreController;
 
 /*
@@ -42,3 +43,5 @@ Route::get('/session', function (Request $req) {
 Route::get('/php', function (Request $req) {
     return phpinfo();
 });
+
+Route::get('/book', [BookController::class, 'show']);

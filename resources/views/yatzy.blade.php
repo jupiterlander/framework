@@ -46,7 +46,7 @@ declare(strict_types=1);
 
 
 <div style="display: inline-block">
-<form action="/yatzy" method="POST">
+<form action="{{ url("/yatzy") }}" method="POST">
 @csrf
 <fieldset  {{ $rollsLeft > 2 ? "disabled" : null }}>
 <table>
@@ -86,18 +86,18 @@ declare(strict_types=1);
         <p>Click on die to hold and click on Ones..Sixes to select score. Bonus for sum > {{ $bonusLimit }}.</p>
     </div>
 
-    @if($gameover && !$highscore)
-    <form action="/yatzy/highscore" method="POST">
+    @if($gameover && !$highscoreSet)
+    <form action="{{ url("/yatzy/highscore") }}" method="POST">
         @csrf
-        <label for="acronym">Choose a acronym with 0-3 letters for the highscore table: </label>
-        <input type="text" name="acronym" size="3" maxlength="3" placeholder="ABC" pattern="[a-z]{0,3}" style="text-transform:uppercase; text-align:center">
+        <label for="acronym">Choose a acronym with 3 letters for the highscore table: </label>
+        <input type="text" name="acronym" size="3" maxlength="3" placeholder="ABC" pattern="[a-z]{3}" style="text-transform:uppercase; text-align:center" required>
         <input hidden name="score" value="{{ $total ?? "21" }}">
         <input type="submit">
     </form>
 
     @else
         <div>
-            <a href="/yatzy/highscore" class="link">Highscores</a>
+            <a href="{{ url("/yatzy/highscore") }}" class="link">Highscores</a>
         </div>
     @endif
 
