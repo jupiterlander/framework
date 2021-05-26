@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use Jupiterlander\yatzy\YatzyGame;
 
 class YatzyController extends Controller
@@ -54,7 +53,7 @@ class YatzyController extends Controller
             $yatzyGame = $request->session()->exists('yatzy') ? unserialize($request->session()->get('yatzy')) : new YatzyGame();
             $yatzyGame->play($_POST['action'] ?? null, $_POST);
 
-            if($_POST['action'] == 'new') {
+            if ($_POST['action'] == 'new') {
                 $request->session()->put('yatzy-highscore-set', false);
             }
 
