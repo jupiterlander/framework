@@ -11,10 +11,18 @@ declare(strict_types=1);
             <a href="{{ url('/') }}">Home</a>
         </li>
 
-        @foreach ( Request::segments() as $segment)
-        <li>
-            <a href="{{ $segment }}">Yatzy</a>
-        </li>
+        @for($i = 1; $i <= count(Request::segments()); $i++)
+            @php
+                $tmpUrl = "/";
+            @endphp
+            @endphp
+            <li>
+                <li>
+                    <a href="{{ $segment }}">Yatzy</a>
+                </li>
+            </li>
+        @endfor
+
         @endforeach
         <li>
             <a href="{{ url('/yatzy/highscore') }}">Highscore</a>

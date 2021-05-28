@@ -7,8 +7,7 @@ namespace Jupiterlander\Controller;
 // PHPUnit\Framework\TestCase;
 use Tests\TestCase;
 use Illuminate\Http\Request;
-//use Session;
-use Illuminate\Contracts\Session\Session;
+
 
 use App\Http\Controllers\BookController;
 
