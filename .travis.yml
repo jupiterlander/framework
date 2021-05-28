@@ -1,0 +1,20 @@
+language: php
+
+php:
+    - "7.4"
+    #- "8.0"
+
+branches:
+  only:
+    - kmom06
+
+before_script:
+    #- make install check
+    - make install
+    - "php artisan serve":
+        background: true
+
+script:
+    - make test
+
+
