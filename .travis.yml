@@ -11,8 +11,7 @@ branches:
 before_script:
     #- make install check
     - make install
-    - "php artisan serve":
-        background: true
+    - php artisan serve &
 
 script:
     - make test
