@@ -7,7 +7,6 @@ filter:
 build:
     project_setup:
       before:
-        - php artisan key:generate
       override:
         - true
     nodes:
