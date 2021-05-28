@@ -7,6 +7,8 @@ filter:
 build:
     project_setup:
       before:
+        - cp .env.scrutinizer .env
+        - php artisan key:generate
       override:
         - true
     nodes:
