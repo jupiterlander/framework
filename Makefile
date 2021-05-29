@@ -7,6 +7,7 @@ PHPCPD     := $(BIN)/phpcpd
 PHPMD      := $(BIN)/phpmd
 PHPSTAN    := $(VENDORBIN)/phpstan
 PHPUNIT    := $(VENDORBIN)/phpunit
+PHPMETRIC  := $(VENDORBIN)/phpmetrics
 # PHPSTAN    := vendor/phpstan/phpstan/phpstan
 # PHPUNIT    := vendor/phpunit/phpunit/phpunit
 
@@ -55,6 +56,7 @@ check-version:
 	$(PHPMD) --version
 	$(PHPSTAN) --version
 	$(PHPUNIT) --version
+    $(PHPMETRIC) --version
 
 prepare:
 	[ -d build ] || mkdir build
@@ -85,6 +87,9 @@ phpstan: prepare
 phpunit: prepare
 	[ ! -d "test" ] || XDEBUG_MODE=coverage $(PHPUNIT) --configuration .phpunit.xml $(options) | tee build/phpunit
 
+phpmetrics: prepare
+	[ ! -f .phpmetrics.json ] || $(PHPMETRIC) --config=.phpmetrics.json | tee build/phpmetrics
+
 cs: phpcs
 
 lint: cs phpcpd phpmd phpstan
@@ -92,4 +97,4 @@ lint: cs phpcpd phpmd phpstan
 test: lint phpunit
 	composer validate
 
-metric: phploc
+metric: phploc phpmetrics
