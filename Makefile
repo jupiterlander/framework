@@ -56,7 +56,7 @@ check-version:
 	$(PHPMD) --version
 	$(PHPSTAN) --version
 	$(PHPUNIT) --version
-    $(PHPMETRIC) --version
+	$(PHPMETRIC) --version
 
 prepare:
 	[ -d build ] || mkdir build
