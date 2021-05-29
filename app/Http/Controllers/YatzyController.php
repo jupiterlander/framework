@@ -49,7 +49,7 @@ class YatzyController extends Controller
 
     public function process(Request $request)
     {
-        if ($request->getSession()) {
+        if ($request->input('action', false)) {
             $yatzyGame = $request->session()->exists('yatzy') ? unserialize($request->session()->get('yatzy')) : new YatzyGame();
             $yatzyGame->play($_POST['action'] ?? null, $_POST);
 
