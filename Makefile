@@ -8,6 +8,8 @@ PHPMD      := $(BIN)/phpmd
 PHPSTAN    := $(VENDORBIN)/phpstan
 PHPUNIT    := $(VENDORBIN)/phpunit
 PHPMETRIC  := $(VENDORBIN)/phpmetrics
+PHPUNITXML := .phpunit.xml
+
 # PHPSTAN    := vendor/phpstan/phpstan/phpstan
 # PHPUNIT    := vendor/phpunit/phpunit/phpunit
 
@@ -85,7 +87,7 @@ phpstan: prepare
 	- [ ! -f .phpstan.neon ] || $(PHPSTAN) analyse -c .phpstan.neon | tee build/phpstan
 
 phpunit: prepare
-	[ ! -d "test" ] || XDEBUG_MODE=coverage $(PHPUNIT) --configuration .phpunit.xml $(options) | tee build/phpunit
+	[ ! -d "test" ] || XDEBUG_MODE=coverage $(PHPUNIT) --configuration $(PHPUNITXML) $(options) | tee build/phpunit
 
 phpmetrics: prepare
 	[ ! -f .phpmetrics.json ] || $(PHPMETRIC) --config=.phpmetrics.json | tee build/phpmetrics
